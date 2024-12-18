@@ -13,7 +13,7 @@
   "main": "app.js",
   "scripts": {
     "start": "nodemon app.js",
-    "test": "ndb app.js"
+    "debug": "ndb app.js"
   },
   "author": "",
   "license": "ISC"

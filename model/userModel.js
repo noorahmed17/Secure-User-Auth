@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
 const bcrypt = require("bcrypt");
-const { type } = require("os");
 
 const userSchema = new mongoose.Schema({
   username: {
@@ -22,8 +21,12 @@ const userSchema = new mongoose.Schema({
   },
   passwordConfirm: {
     type: String,
-    validator: function (el) {
-      return el === this.password;
+    required: [true, "Please confirm your password"],
+    validate: {
+      validator: function (el) {
+        return el === this.password;
+      },
+      message: "Passwords do not match",
     },
   },
   createdAt: {

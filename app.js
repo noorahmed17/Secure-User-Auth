@@ -2,6 +2,7 @@ const express = require("express");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 
+const GlobalErrorHandler = require("./contollers/ErrorHandler");
 const userRouter = require("./routes/userRouter");
 
 dotenv.config({ path: "./config.env" });
@@ -21,6 +22,8 @@ const port = process.env.PORT || 3000;
 app.use(express.json());
 
 app.use("/secure-auth/users", userRouter);
+
+app.use(GlobalErrorHandler);
 
 app.use("*", (req, res) => {
   const message = `Route not found Original Route is: ${req.originalUrl}`;
