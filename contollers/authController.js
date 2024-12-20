@@ -18,7 +18,7 @@ exports.register = catchAsync(async (req, res, next) => {
 
   const checkUser = await checkUserExist({ username, email }, User);
   if (checkUser) {
-    return next(new GlobalErrorHandler("User ALready Exists", 401));
+    return next(new GlobalErrorHandler("User Already Exists", 409));
   }
 
   const user = await User.create({
@@ -42,7 +42,7 @@ exports.signin = catchAsync(async (req, res, next) => {
   }
 
   const token = createActivationToken(user);
-  res.status(201).json({ message: "You Have succesfully Loggedin", token });
+  res.status(200).json({ message: "You Have succesfully Loggedin", token });
 });
 
 exports.protect = catchAsync(async (req, res, next) => {
@@ -57,10 +57,9 @@ exports.protect = catchAsync(async (req, res, next) => {
   }
 
   let verifiedToken;
-  try {
-    verifiedToken = jwt.verify(token, process.env.SECRET_KEY);
-  } catch (err) {
-    return next(new GlobalErrorHandler("Token is invalid or expired", 401));
+  verifiedToken = jwt.verify(token, process.env.SECRET_KEY);
+  if (!verifiedToken) {
+    return next();
   }
 
   const decodedToken = jwt.decode(token);

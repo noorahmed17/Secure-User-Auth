@@ -23,12 +23,15 @@ app.use(express.json());
 
 app.use("/secure-auth/users", userRouter);
 
-app.use(GlobalErrorHandler);
-
-app.use("*", (req, res) => {
-  const message = `Route not found Original Route is: ${req.originalUrl}`;
-  res.status(404).json({ message });
+app.use("*", (req, res, next) => {
+  const err = new Error(
+    `Route not found Original Route is: ${req.originalUrl}`
+  );
+  err.statusCode = 404;
+  next(err);
 });
+
+app.use(GlobalErrorHandler);
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);

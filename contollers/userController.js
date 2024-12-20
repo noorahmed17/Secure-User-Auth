@@ -1,8 +1,9 @@
 const User = require("../model/userModel");
+const catchAsync = require("../utils/catchAsyncError");
 
-exports.createUser = async (req, res) => {
+exports.createUser = catchAsync(async (req, res, next) => {
   const user = await User.create({
-    name: req.body.name,
+    username: req.body.username,
     email: req.body.email,
     password: req.body.password,
     passwordConfirm: req.body.passwordConfirm,
@@ -12,26 +13,27 @@ exports.createUser = async (req, res) => {
     status: "success",
     data: user,
   });
-};
+});
 
-exports.getAll = async (req, res) => {
+exports.getAll = catchAsync(async (req, res, next) => {
   const users = await User.find();
   res.status(200).json({
     status: "success",
     length: users.length,
     data: users,
   });
-};
+});
 
-exports.getOne = async (req, res) => {
+exports.getOne = catchAsync(async (req, res, next) => {
   const user = await User.findById(req.params.id);
+
   res.status(200).json({
     status: "success",
     data: user,
   });
-};
+});
 
-exports.updateUser = async (req, res) => {
+exports.updateUser = catchAsync(async (req, res, next) => {
   const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
   });
@@ -39,11 +41,11 @@ exports.updateUser = async (req, res) => {
     status: "success",
     data: updatedUser,
   });
-};
+});
 
-exports.deleteUser = async (req, res) => {
+exports.deleteUser = catchAsync(async (req, res, next) => {
   await User.findByIdAndDelete(req.params.id);
   res.status(204).json({
     status: "success",
   });
-};
+});
