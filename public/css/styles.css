@@ -42,6 +42,11 @@ img {
   height: 450px;
 }
 
+.img-signin {
+  width: 400px;
+  height: 435px;
+}
+
 h1 {
   padding: 10px;
   text-align: center;
@@ -53,19 +58,31 @@ h1 {
 .internal input[type="password"] {
   width: 100%;
   margin: 10px auto;
-  padding: 10px 15px;
+  padding: 10px 15px 10px 35px;
   border: none;
   border-bottom: 1px solid black;
   font-size: 15px;
 }
 
-.internal input:focus {
+.internal input[type="text"]:focus,
+.internal input[type="email"]:focus,
+.internal input[type="password"]:focus {
   outline: none;
+  background: none;
+  box-shadow: none;
 }
 
-.internal input::selection {
-  outline: none;
-  box-shadow: none;
+.internal input[type="text"]::selection,
+.internal input[type="email"]::selection {
+  background: transparent;
+}
+
+.checkbox {
+  margin-top: 10px;
+}
+
+.checkbox .signin-terms {
+  margin-left: 10px;
 }
 
 span {
@@ -81,6 +98,7 @@ button {
   border-radius: 9px;
   color: white;
   font-size: 15px;
+  cursor: pointer;
 }
 
 a {
@@ -89,5 +107,53 @@ a {
   margin-top: 10px;
   text-decoration: underline;
   font-size: 14px;
-  color: #666;
+  color: black;
+}
+
+i.fa-user {
+  position: absolute;
+  top: 7%;
+  left: 5%;
+}
+
+i.fa-envelope {
+  position: absolute;
+  top: 22%;
+  left: 5%;
+}
+
+i.fa-envelope.signin-email {
+  position: absolute;
+  top: 10%;
+  left: 5%;
+}
+
+i.fa-lock {
+  position: absolute;
+  top: 36%;
+  left: 5%;
+}
+
+i.fa-lock.signin-lock {
+  position: absolute;
+  top: 25%;
+  left: 5%;
+}
+
+i.fa-lock-open {
+  position: absolute;
+  top: 50%;
+  left: 5%;
+}
+
+.icons {
+  margin-top: 30px;
+}
+
+i.fa-square-facebook,
+i.fa-square-twitter,
+i.fa-google {
+  font-size: 32px;
+  padding: 5px;
+  cursor: pointer;
 }
