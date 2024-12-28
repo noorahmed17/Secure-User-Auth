@@ -1,0 +1,28 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    link(rel='stylesheet', href='../css/styles.css')
+    title Sign In
+  body
+    .container
+      .right-section.signin
+        img.img-signin(src='../img/modern-abstract-art-8642471_1280.jpg', alt='signin')
+        a(href='./signup') Create an account
+      h1 Sign In
+      .internal
+        i.fa-solid.fa-envelope.signin-email
+        input#email(type='email', placeholder='Your Email', autocomplete='off')
+        i.fa-solid.fa-lock.signin-lock
+        input#password(type='password', placeholder='Password')
+        .checkbox
+          input#terms(type='checkbox')
+          label.signin-terms(for='terms') Remember me
+        button(type='submit') Log in
+        .icons
+          label(for='') Or Login with
+          i.fa-brands.fa-square-facebook(style='color: #0270c5')
+          i.fa-brands.fa-square-twitter(style='color: #54b1f8')
+          i.fa-brands.fa-google(style='color: #f00000')
+    script(src='https://kit.fontawesome.com/fa327da0c0.js', crossorigin='anonymous')

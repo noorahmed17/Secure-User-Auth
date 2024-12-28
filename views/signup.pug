@@ -1,0 +1,30 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    link(rel='stylesheet', href='../css/styles.css')
+    title Sign Up
+  body
+    .container
+      h1 Sign Up
+      form.internal
+        i.fa-solid.fa-user
+        input#name(type='text', placeholder='Username', autocomplete='off')
+        i.fa-solid.fa-envelope
+        input#email(type='email', placeholder='Email', autocomplete='off')
+        i.fa-solid.fa-lock
+        input#password(type='password', placeholder='Password')
+        i.fa-solid.fa-lock-open
+        input#confirmPassword(type='password', placeholder='Confirm your Password')
+        .checkbox
+          input#terms(type='checkbox')
+          label(for='terms')
+            | I agree to all statements in 
+            span Terms of service
+        button(type='submit') Register
+      .right-section
+        img(src='../img/modern-abstract-art-8642474_1280.jpg', alt='signup')
+        a(href='/signin') I am already a member
+    script(src='https://kit.fontawesome.com/fa327da0c0.js', crossorigin='anonymous')
+    script(src="/js/script.js")

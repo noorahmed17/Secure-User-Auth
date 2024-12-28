@@ -1,9 +1,11 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
-
+const path = require("path");
+const pug = require("pug");
 const GlobalErrorHandler = require("./contollers/ErrorHandler");
 const userRouter = require("./routes/userRouter");
+const viewRouter = require("./routes/viewRouter");
 
 dotenv.config({ path: "./config.env" });
 
@@ -20,7 +22,12 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(express.json());
+// app.use(express.urlencoded({ extended: true }));
+app.set("view engine", "pug");
+app.set("views", path.join(__dirname, "views"));
+app.use(express.static(path.join(__dirname, "public")));
 
+app.use("/", viewRouter);
 app.use("/secure-auth/users", userRouter);
 
 app.use("*", (req, res, next) => {
