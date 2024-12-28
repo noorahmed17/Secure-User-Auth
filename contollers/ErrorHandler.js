@@ -4,8 +4,6 @@ module.exports = (err, req, res, next) => {
   err.statusCode = err.statusCode || 500;
   err.message = err.message || "Internal Server Error";
 
-  console.log("Here error", JSON.stringify(err));
-
   //MongoDb ObjectId error
   if (err.name === "CastError") {
     const errorMessage = `Invalid ${err.path} : ${err.value}`;
@@ -32,6 +30,7 @@ module.exports = (err, req, res, next) => {
     err = new GlobalErrorHandler(errorMessage, 401);
   }
 
+  console.log(err);
   return res.status(err.statusCode).json({
     status: "Failed",
     message: err.message,

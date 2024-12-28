@@ -11,7 +11,7 @@ html(lang='en')
         img.img-signin(src='../img/modern-abstract-art-8642471_1280.jpg', alt='signin')
         a(href='./signup') Create an account
       h1 Sign In
-      .internal
+      form.internal.signinForm
         i.fa-solid.fa-envelope.signin-email
         input#email(type='email', placeholder='Your Email', autocomplete='off')
         i.fa-solid.fa-lock.signin-lock
@@ -26,3 +26,4 @@ html(lang='en')
           i.fa-brands.fa-square-twitter(style='color: #54b1f8')
           i.fa-brands.fa-google(style='color: #f00000')
     script(src='https://kit.fontawesome.com/fa327da0c0.js', crossorigin='anonymous')
+    script(src="/js/script.js")
