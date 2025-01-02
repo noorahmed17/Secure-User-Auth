@@ -29,7 +29,9 @@ exports.register = catchAsync(async (req, res, next) => {
   });
 
   const token = createActivationToken(user);
-  res.status(201).json({ user, token });
+  res.status(201).json({
+    status: "success",
+  });
 });
 
 exports.signin = catchAsync(async (req, res, next) => {
@@ -37,12 +39,19 @@ exports.signin = catchAsync(async (req, res, next) => {
   validateRequiredFields([username, email, password], req);
 
   const user = await checkUserExist({ email }, User);
-  if (!user || !(await bcrypt.compare(password, user.password))) {
-    return next(new GlobalErrorHandler("Invalid Email or Password", 401));
+  if (!user) {
+    return next(
+      new GlobalErrorHandler("No user found with this email address", 401)
+    );
+  }
+  if (!(await bcrypt.compare(password, user.password))) {
+    return next(new GlobalErrorHandler("Incorrect Password", 401));
   }
 
   const token = createActivationToken(user);
-  res.status(200).json({ message: "You Have succesfully Loggedin", token });
+  res.status(200).json({
+    status: "success",
+  });
 });
 
 exports.protect = catchAsync(async (req, res, next) => {

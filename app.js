@@ -29,6 +29,10 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/", viewRouter);
 app.use("/secure-auth/users", userRouter);
 
+app.get("/favicon.ico", (req, res) => {
+  res.status(404).end();
+});
+
 app.use("*", (req, res, next) => {
   const err = new Error(
     `Route not found Original Route is: ${req.originalUrl}`

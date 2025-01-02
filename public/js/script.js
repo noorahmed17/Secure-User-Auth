@@ -1,6 +1,23 @@
 const signupForm = document.querySelector(".internal");
 const signinForm = document.querySelector(".signinForm");
-console.log(signinForm);
+
+const showAlert = (msg, type) => {
+  console.log("ENTERED ALERT");
+
+  const existingAlert = document.querySelector(".alert");
+  if (existingAlert) {
+    existingAlert.remove();
+  }
+
+  const alert = document.createElement("div");
+  alert.className = `alert alert-${type}`;
+  alert.innerHTML = `${msg}`;
+  document.body.appendChild(alert);
+
+  // setTimeout(() => {
+  //   alert.remove();
+  // }, 2000);
+};
 
 const signup = async (formData) => {
   const url = "/secure-auth/users/signup";
@@ -12,10 +29,17 @@ const signup = async (formData) => {
       },
       body: JSON.stringify(formData),
     });
-    console.log(res);
-    if (res.ok) console.log("SIGH UP SUCCESFULLY");
+
+    const data = await res.json();
+    console.log(data);
+    if (data.status === "success") {
+      showAlert("You have successfully Signup", "success");
+    } else {
+      showAlert(data.message, "error");
+    }
   } catch (err) {
     console.log(err);
+    showAlert("An error occurred, Please try again.", "error");
   }
 };
 
@@ -29,10 +53,16 @@ const signin = async (formData) => {
       },
       body: JSON.stringify(formData),
     });
-    console.log(res);
-    if (res.ok) console.log("SUCCESFULLY");
+    const data = await res.json();
+    console.log(data);
+    if (data.status === "success") {
+      showAlert("You have succesfully Loggedin", "success");
+    } else {
+      showAlert(data.message, "error");
+    }
   } catch (err) {
     console.log(err);
+    showAlert("An error occurred, Please try again.", "error");
   }
 };
 

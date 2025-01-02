@@ -8,7 +8,7 @@ exports.validateRequiredFields = (fields, obj) => {
 
   if (missingFields.length > 0) {
     throw new GlobalErrorHandler(
-      `Please Enter The Required Field(s): ${missingFields.join(", ")}`,
+      `Please Enter Your ${missingFields.join(" and ")}`,
       409
     );
   }
@@ -17,11 +17,3 @@ exports.validateRequiredFields = (fields, obj) => {
 exports.checkUserExist = async (query, User) => {
   return await User.findOne(query);
 };
-
-// const filterObj = (obj, ...allowedFields) => {
-//   const newObj = {};
-//   Object.keys(obj).forEach(el => {
-//     if (allowedFields.includes(el)) newObj[el] = obj[el];
-//   });
-//   return newObj;
-// };

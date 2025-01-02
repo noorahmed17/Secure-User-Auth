@@ -12,9 +12,17 @@ module.exports = (err, req, res, next) => {
 
   //Duplicate Key Error
   if (err.code === 11000) {
-    const errorMessage = `Duplicate Field Value Entered : ${Object.keys(
+    const errorMessage = `User exist with the same ${Object.keys(
       err.keyValue
     )}`;
+    err = new GlobalErrorHandler(errorMessage, 400);
+  }
+
+  // MongoDb Validation error
+  else if (err.name === "ValidationError") {
+    const errorMessage = Object.values(err.errors)
+      .map((val) => val.message)
+      .join(", ");
     err = new GlobalErrorHandler(errorMessage, 400);
   }
 
@@ -32,7 +40,7 @@ module.exports = (err, req, res, next) => {
 
   console.log(err);
   return res.status(err.statusCode).json({
-    status: "Failed",
+    status: "error",
     message: err.message,
   });
 };

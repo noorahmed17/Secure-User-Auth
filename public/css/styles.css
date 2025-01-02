@@ -157,3 +157,29 @@ i.fa-google {
   padding: 5px;
   cursor: pointer;
 }
+
+.alert {
+  position: fixed;
+  top: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 15px 20px;
+  border-radius: 5px;
+  z-index: 1000;
+  color: white;
+  display: block;
+  width: auto;
+  max-width: 90%;
+  text-align: center;
+  display: block;
+  width: 65%;
+  font-size: 24px;
+}
+
+.alert-success {
+  background-color: rgb(117 199 117);
+}
+
+.alert-error {
+  background-color: rgb(247 151 151 / 79%);
+}
