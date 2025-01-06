@@ -25,7 +25,6 @@ const signup = async (formData) => {
     });
 
     const data = await res.json();
-    console.log(data);
     if (data.status === "success") {
       showAlert("You have successfully Signup", "success");
       window.setTimeout(() => {
@@ -51,7 +50,6 @@ const signin = async (formData) => {
       body: JSON.stringify(formData),
     });
     const data = await res.json();
-    console.log(data);
     if (data.status === "success") {
       showAlert("You have succesfully Loggedin", "success");
       window.setTimeout(() => {
