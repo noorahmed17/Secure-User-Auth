@@ -2,8 +2,6 @@ const signupForm = document.querySelector(".internal");
 const signinForm = document.querySelector(".signinForm");
 
 const showAlert = (msg, type) => {
-  console.log("ENTERED ALERT");
-
   const existingAlert = document.querySelector(".alert");
   if (existingAlert) {
     existingAlert.remove();
@@ -13,10 +11,6 @@ const showAlert = (msg, type) => {
   alert.className = `alert alert-${type}`;
   alert.innerHTML = `${msg}`;
   document.body.appendChild(alert);
-
-  // setTimeout(() => {
-  //   alert.remove();
-  // }, 2000);
 };
 
 const signup = async (formData) => {
@@ -34,6 +28,9 @@ const signup = async (formData) => {
     console.log(data);
     if (data.status === "success") {
       showAlert("You have successfully Signup", "success");
+      window.setTimeout(() => {
+        window.location.assign("/");
+      }, 1500);
     } else {
       showAlert(data.message, "error");
     }
@@ -57,6 +54,9 @@ const signin = async (formData) => {
     console.log(data);
     if (data.status === "success") {
       showAlert("You have succesfully Loggedin", "success");
+      window.setTimeout(() => {
+        window.location.assign("/");
+      }, 1500);
     } else {
       showAlert(data.message, "error");
     }

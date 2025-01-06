@@ -183,3 +183,69 @@ i.fa-google {
 .alert-error {
   background-color: rgb(247 151 151 / 79%);
 }
+
+.base-header h1 {
+  text-transform: uppercase;
+  position: relative;
+}
+
+.base-header h1 {
+  text-transform: uppercase;
+  position: relative;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.base-header h1::before {
+  content: "\2605";
+  position: absolute;
+  font-size: 20px;
+  color: #383535;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 200%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.img-container {
+  position: relative;
+  margin: 90px auto;
+  height: auto;
+  display: grid;
+  place-items: center;
+  grid-template-rows: repeat(1, 1fr);
+}
+
+.img-container img {
+  width: 200px;
+  height: 200px;
+  padding: 20px;
+}
+
+.img-container::before,
+.img-container::after {
+  content: "";
+  position: absolute;
+  top: -2%;
+  width: 40px;
+  height: 1px;
+  background-color: #383535;
+}
+
+.img-container::before {
+  left: calc(50% - 50px);
+}
+
+.img-container::after {
+  right: calc(50% - 50px);
+}
+
+.copyright {
+  margin: -100px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #383535;
+}
